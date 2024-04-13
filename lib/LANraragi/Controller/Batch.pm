@@ -65,7 +65,7 @@ sub socket {
             my $id         = $command->{"archive"};
 
             unless ($id) {
-                $client->finish( 1001 => 'No archives provided.' );
+                $client->finish( 1001 => '没有提供档案.' );
                 return;
             }
 

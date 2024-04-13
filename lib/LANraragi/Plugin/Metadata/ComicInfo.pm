@@ -4,7 +4,7 @@ use strict;
 use warnings;
 
 use Mojo::DOM;
-
+use utf8;
 #You can also use the LRR Internal API when fitting.
 use LANraragi::Model::Plugins;
 use LANraragi::Utils::Logging qw(get_plugin_logger);
@@ -20,7 +20,7 @@ sub plugin_info {
         namespace    => "comicinfo",
         author       => "Gin-no-kami",
         version      => "1.0",
-        description  => "Parses metadata from ComicInfo.xml embedded in the archive",
+        description  => "解析存档中嵌入的 ComicInfo.xml 中的元数据",
         parameters => []
     );
 

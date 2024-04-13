@@ -165,8 +165,8 @@ sub get_tagrules {
     );
 }
 
-sub get_htmltitle        { return xml_escape(&get_redis_conf( "htmltitle",       "LANraragi" )) }
-sub get_motd             { return xml_escape(&get_redis_conf( "motd",            "Welcome to this Library running LANraragi!" )) }
+sub get_htmltitle        { return &get_redis_conf( "htmltitle",       "LANraragi" ) }
+sub get_motd             { return &get_redis_conf( "motd",            "欢迎来到 LANraragi!" ) }
 sub get_tempmaxsize      { return &get_redis_conf( "tempmaxsize",     "500" ) }
 sub get_pagesize         { return &get_redis_conf( "pagesize",        "100" ) }
 sub enable_pass          { return &get_redis_conf( "enablepass",      "1" ) }

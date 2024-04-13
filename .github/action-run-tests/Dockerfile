@@ -1,8 +1,8 @@
-FROM difegue/lanraragi:nightly
+FROM czk1997/lanraragi:dev
 # Use the base LRR container to have a prepared test environment
 
 LABEL "name"="lrr-test"
-LABEL "maintainer"="Difegue <sugoi@cock.li>"
+LABEL "maintainer"="czk1997 <czk1997@gmail.com>"
 LABEL "version"="0.0.1"
 
 LABEL "com.github.actions.name"="LANraragi Test Suite"

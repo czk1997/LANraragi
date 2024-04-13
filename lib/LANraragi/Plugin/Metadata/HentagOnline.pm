@@ -8,7 +8,7 @@ no warnings 'experimental::signatures';
 use URI::Escape;
 use Mojo::JSON qw(from_json);
 use Mojo::UserAgent;
-
+use utf8;
 #You can also use the LRR Internal API when fitting.
 use LANraragi::Model::Plugins;
 use LANraragi::Utils::Logging qw(get_plugin_logger);
@@ -28,11 +28,11 @@ sub plugin_info {
         namespace   => "hentagonlineplugin",
         author      => "siliconfeces",
         version     => "0.2",
-        description => "Searches hentag.com for tags matching your archive",
+        description => "在 hentag.com 中搜索与您的档案相匹配的tag",
         parameters  => [
             {   type => "string",
                 desc =>
-                  "Comma-separated list of languages to consider. First language = most preferred. Default is \"english, japanese\""
+                  "要考虑的以逗号分隔的语言列表。 第一语言 = 最优先。 默认为“英语、日语”"
             }
         ],
         oneshot_arg => "Hentag.com vault URL (Will attach matching tags to your archive)",

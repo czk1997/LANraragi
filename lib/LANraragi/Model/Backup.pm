@@ -113,7 +113,8 @@ sub restore_from_JSON {
 
         # Explicitly set "new category" values to avoid them being absent from the DB entry
         # (which likely breaks a bunch of things)
-        $redis->hset( $cat_id, "archives", "[]" );
+        $redis->hset( $cat_id, "archives",  "[]" );
+        $redis->hset( $cat_id, "last_used", time() );
 
         foreach my $arcid (@archives) {
             LANraragi::Model::Category::add_to_category( $cat_id, $arcid );

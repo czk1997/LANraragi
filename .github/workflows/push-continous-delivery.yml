@@ -29,10 +29,12 @@ jobs:
         echo "${DOCKER_PASSWORD}" | docker login -u ${DOCKER_USERNAME} --password-stdin
     - name: Build/Push Nightly Docker
       run: |
+        git submodule init
+        git submodule update
         docker buildx build \
           --platform linux/386,linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64 \
           --output "type=image,push=true" \
-          --tag difegue/lanraragi:nightly \
+          --tag czk1997/lanraragi:nightly \
           --cache-from "type=local,src=/tmp/buildxcache" \
           --cache-to "type=local,dest=/tmp/buildxcache" \
           --file ./tools/build/docker/Dockerfile .
@@ -44,29 +46,15 @@ jobs:
     - uses: actions/checkout@master
     - name: Docker Build and export
       run: |
-        docker build -t difegue/lanraragi -f ./tools/build/docker/Dockerfile .
-        docker create --name rootfs difegue/lanraragi 
+        git submodule init
+        git submodule update
+        docker build -t czk1997/lanraragi:dev -f ./tools/build/docker/Dockerfile --build-arg INSTALL_PARAMETER=-w .
+        docker create --name rootfs czk1997/lanraragi
         docker export --output=package.tar rootfs
     - name: Upload rootfs
       uses: actions/upload-artifact@v1
       with:
         name: package
-        path: package.tar 
-
-  exportDockerRootFSLegacy:
-    name: Build and export Docker rootfs for Windows build (WSL1)
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@master
-    - name: Docker Build and export
-      run: |
-        docker build -t difegue/lanraragi -f ./tools/build/docker/Dockerfile-legacy --build-arg INSTALL_PARAMETER=-w .
-        docker create --name rootfs difegue/lanraragi 
-        docker export --output=package.tar rootfs
-    - name: Upload rootfs
-      uses: actions/upload-artifact@v1
-      with:
-        name: package-legacy
         path: package.tar 
 
   buildNightlyWSL:

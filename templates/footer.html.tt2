@@ -5,5 +5,5 @@
     [% descstr %]
     <br>
     [% END %]
-    Powered by <a href="https://github.com/Difegue/LANraragi"> LANraragi.</a>
+    使用 <a href="https://github.com/Difegue/LANraragi"> LANraragi </a>  稳定运行.
 </p>

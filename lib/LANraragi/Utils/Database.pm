@@ -111,10 +111,10 @@ sub add_timestamp_tag ( $redis, $id ) {
         my $date;
 
         if ( LANraragi::Model::Config->use_lastmodified eq "1" ) {
-            $logger->debug("Using file date");
+            $logger->info("Using file date");
             $date = ( stat( $redis->hget( $id, "file" ) ) )[9];    #9 is the unix time stamp for date modified.
         } else {
-            $logger->debug("Using current date");
+            $logger->info("Using current date");
             $date = time();
         }
 
